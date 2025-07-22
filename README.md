@@ -6,7 +6,7 @@
 
 A comprehensive, self-hosted web application for validating Top-Level Domains (TLDs) against the official IANA list. It features a clean web UI, a secure RESTful API, and a local SQLite database for persistence.
 
-![Screenshot of TLD Validator](placeholder.png)  <!-- Placeholder for a project screenshot -->
+<img width="1117" height="687" alt="image" src="https://github.com/user-attachments/assets/341cbcbc-ef55-4682-92f9-a6b72baa9b2c" />
 
 ---
 
@@ -45,7 +45,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/tld-validator.git
+    git clone https://github.com/bamit99/tld-validator.git
     cd tld-validator
     ```
 
