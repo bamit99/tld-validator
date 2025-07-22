@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLD Validator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TLD Validator</h1>
+            <p>Validate Top Level Domains against the official IANA list</p>
+        </header>
+
+        <main>
+            <section class="validation-section">
+                <h2>Domain Validation</h2>
+                <div class="input-group">
+                    <label for="domain-input">Enter domain name:</label>
+                    <input 
+                        type="text" 
+                        id="domain-input" 
+                        placeholder="example.com"
+                        maxlength="253"
+                    >
+                    <button id="validate-btn" onclick="validateDomain()">Validate</button>
+                </div>
+                <div id="validation-result" class="result hidden"></div>
+            </section>
+
+            <section class="tld-validation-section">
+                <h2>TLD Validation</h2>
+                <div class="input-group">
+                    <label for="tld-input">Enter TLD:</label>
+                    <input 
+                        type="text" 
+                        id="tld-input" 
+                        placeholder="com"
+                        maxlength="63"
+                    >
+                    <button id="validate-tld-btn" onclick="validateTLD()">Validate TLD</button>
+                </div>
+                <div id="tld-result" class="result hidden"></div>
+            </section>
+
+            <section class="api-section">
+                <h2>API Key Management</h2>
+                <button id="generate-key-btn" onclick="generateAPIKey()">Generate New API Key</button>
+                <div id="api-key-result" class="result hidden"></div>
+                
+            <section class="api-help-section">
+                <h2>Help & API Usage</h2>
+                <div class="api-docs">
+                    <p>To use this service programmatically from a remote machine, you can interact with the following RESTful API endpoints. First, generate an API key using the button above or the <code>/api/generate-key</code> endpoint. Then, include the key in the <code>X-API-Key</code> header for all requests.</p>
+                    
+                    <h3>Endpoints</h3>
+                    <ul>
+                        <li>
+                            <strong>Generate API Key</strong><br>
+                            <code>POST /api/generate-key</code><br>
+                            <em>Generates a new API key. No authentication required.</em><br>
+                            <pre><code>curl -X POST http://your-server-ip:8000/api/generate-key</code></pre>
+                        </li>
+                        <li>
+                            <strong>Validate TLD/Domain</strong><br>
+                            <code>POST /api/validate-tld</code><br>
+                            <em>Validates a TLD or a full domain name.</em><br>
+                            <pre><code>curl -X POST http://your-server-ip:8000/api/validate-tld \
+-H "X-API-Key: YOUR_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{"domain": "example.com"}'</code></pre>
+                        </li>
+                        <li>
+                            <strong>Validate TLD (GET)</strong><br>
+                            <code>GET /api/validate-tld?tld=com</code><br>
+                            <em>Validates a TLD using a GET request.</em><br>
+                            <pre><code>curl -X GET "http://your-server-ip:8000/api/validate-tld?tld=com" \
+-H "X-API-Key: YOUR_API_KEY"</code></pre>
+                        </li>
+                        <li>
+                            <strong>List API Keys</strong><br>
+                            <code>GET /api/keys</code><br>
+                            <em>Retrieves a list of all API keys and their usage stats. Requires a valid API key.</em><br>
+                            <pre><code>curl -X GET http://your-server-ip:8000/api/keys \
+-H "X-API-Key: YOUR_API_KEY"</code></pre>
+                        </li>
+                        <li>
+                            <strong>Cache Information</strong><br>
+                            <code>GET /api/cache-info</code><br>
+                            <em>Get status of the TLD cache.</em><br>
+                            <pre><code>curl -X GET http://your-server-ip:8000/api/cache-info</code></pre>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            </section>
+
+            <section class="cache-info">
+                <h2>TLD Cache Information</h2>
+                <div id="cache-info">
+                    <p>Loading cache information...</p>
+                </div>
+                <button id="refresh-cache-btn" onclick="refreshCacheInfo()">Refresh</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data source: <a href="https://data.iana.org/TLD/tlds-alpha-by-domain.txt" target="_blank">IANA TLD List</a></p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
