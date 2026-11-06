@@ -179,3 +179,7 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Project: SQLite cache/key database is auto-generated at runtime; never commit
+*.db
+backend/data/*.db

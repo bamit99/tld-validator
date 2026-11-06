@@ -83,6 +83,8 @@ Follow these instructions to get a copy of the project up and running on your lo
     ```
     The application will be available at `http://localhost:8000`.
 
+> **Note — repository hygiene:** the SQLite database (`backend/data/tld_cache.db`) is **auto-generated** on first run: it caches the IANA TLD list and stores locally generated API keys. It is intentionally NOT tracked by git (excluded via `.gitignore`) and **must never be committed** — it contains runtime data and locally generated API keys. Let the app create it fresh on deployment.
+
 ---
 
 ## 📖 API Documentation
